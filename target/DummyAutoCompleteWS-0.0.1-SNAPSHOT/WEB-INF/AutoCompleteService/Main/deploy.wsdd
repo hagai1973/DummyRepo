@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AutoCompleteService WSDL service -->
+
+  <service name="AutoComplete" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://Main"/>
+      <parameter name="wsdlServiceElement" value="AutoCompleteService"/>
+      <parameter name="schemaQualified" value="http://Main"/>
+      <parameter name="wsdlServicePort" value="AutoComplete"/>
+      <parameter name="className" value="Main.AutoComplete"/>
+      <parameter name="wsdlPortType" value="AutoComplete"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://Main" xmlns:retNS="http://Main" xmlns:rtns="http://Main" xmlns:tns="http://Main" name="autoComplete" qname="operNS:autoComplete" returnQName="retNS:autoCompleteReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+        <parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" xmlns:pns="http://Main" qname="pns:work" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="autoComplete"/>
+
+      <typeMapping xmlns:ns="http://Main" qname="ns:&gt;autoComplete" type="java:Main.AutoComplete" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://Main" qname="ns:&gt;autoCompleteResponse" type="java:Main.AutoCompleteResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://Main" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+  </service>
+</deployment>
